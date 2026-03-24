@@ -1,6 +1,8 @@
 package liv.duda.Model;
 
 import jakarta.persistence.*;
+import liv.duda.Enum.StatusPedido;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -18,11 +20,12 @@ public class PedidoModel {
     @Column(name = "valor_total")
     private BigDecimal valorTotal;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status")
-    private String status;
+    private StatusPedido status;
 
-    // ✅ Construtor correto
-    public PedidoModel(String status, BigDecimal valorTotal, LocalDateTime data) {
+    // ✅ Construtor corrigido
+    public PedidoModel(StatusPedido status, BigDecimal valorTotal, LocalDateTime data) {
         this.status = status;
         this.valorTotal = valorTotal;
         this.data = data;
@@ -55,11 +58,11 @@ public class PedidoModel {
         this.valorTotal = valorTotal;
     }
 
-    public String getStatus() {
+    public StatusPedido getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(StatusPedido status) {
         this.status = status;
     }
 }
